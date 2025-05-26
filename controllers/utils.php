@@ -29,6 +29,10 @@ class Utils
         return "Rp " . number_format($amount, 2, ',', '.');
     }
 
+    public static function GetCurrentTimestamp() {
+        return date('Y-m-d H:i:s');
+    }
+
     // Function to set unique int ID for a table
     public static function SetUniqueIntId($db_conn, $table_name)
     {
@@ -50,7 +54,12 @@ class Utils
     // Function to set unique string ID
     public static function SetUniqueStringID($prefix)
     {
-        $uniqueID = strtroupper(substr($prefix, 0, 6)) . "_" . uniqid(); // Generate unique ID
+        $uniqueID = strtoupper(substr($prefix, 0, 6)) . "_" . uniqid(); // Generate unique ID
         return $uniqueID; // Return unique ID
+    }
+
+    public static function SetUniqueOrderId() {
+        $uniqueOrderId = 'ORD-' . uniqid();
+        return $uniqueOrderId;
     }
 }

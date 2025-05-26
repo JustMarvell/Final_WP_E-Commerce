@@ -60,9 +60,6 @@ class Products
         $q = "INSERT INTO " . $this->table . " (id, prod_name, prod_qty, prod_desc, prod_img, prod_price, prod_category) 
                   VALUES (:id, :name, :quantity, :description, :image, :price, :category)";
 
-        $uID = $this->utils->SetUniqueProductId($this->category); // Get unique ID for product
-        $this->id = $uID; // Set unique ID
-
         $sql = $this->db_conn->prepare($q);
         $sql->bindParam(':id', $this->id); // Bind unique ID
         $sql->bindParam(':name', $this->name);
@@ -145,8 +142,8 @@ class Products
     {
         $q = "UPDATE " . $this->table . " SET prod_qty = :quantity WHERE id = :id";
         $sql = $this->db_conn->prepare($q);
-        $sql->bindParam(':id', $id);
         $sql->bindParam(':quantity', $new_quantity);
+        $sql->bindParam(':id', $id);
         return $sql->execute(); // Return execution result
     }
 

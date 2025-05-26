@@ -33,4 +33,8 @@ class UserCnt
     {
         return $this->userModel->AddUser($username, $password); // Call method from User model to add a new user
     }
+
+    public function GetUserById($id) {
+        return $this->userModel->GetUserById($id);
+    }
 }

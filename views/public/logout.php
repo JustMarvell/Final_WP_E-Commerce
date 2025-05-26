@@ -17,6 +17,6 @@
         );
     }
 
-    header("Location: index_nn.php"); // redirect to login page
+    header("Location: logreg.php"); // redirect to login page
     exit(); // exit script
 ?>

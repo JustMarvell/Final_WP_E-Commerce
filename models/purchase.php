@@ -94,6 +94,11 @@ class Purchase
     }
 
     // Function to create purchase receipt
+    // cancel using this function
+    // use html2canvas
+    // how to use that?
+    // hanya dewa yang tau
+    // sadfjlkasjdfkahiokladsjmcvjafikjsdnfjme
     public function CreateReceipt($name, $qty, $price, $ord_date)
     {
         $receipt = "NEBULA PURCHASE RECEIPT\n=============================\n";

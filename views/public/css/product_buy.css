@@ -1,0 +1,56 @@
+.product-detail {
+    .card img {
+        height: fit-content;
+        object-fit: fill;
+    }
+}
+
+#receipt {
+    width: 320px;
+    padding: 20px;
+    background: linear-gradient(to right, #ff8828, #e04204);
+    color: #000;
+    font-family: 'Segoe UI', sans-serif;
+    box-shadow: 0 0 10px rgba(0,0,0,0.15);
+}
+#receipt img {
+    height: 80px;
+}
+#receipt table {
+    border-radius: 15px;
+}
+
+#receipt table th,
+#receipt table td {
+    background-color: #20b5ff; 
+    color:rgb(255, 255, 255);
+}
+
+.tablerounededCorner {
+    border: 1px solidrgb(110, 231, 231);
+    background-color: #ddd;
+    border-radius: 1.2em;
+}
+
+.roundedTable {
+    border-collapse: collapse;
+    border-radius: 1.2em;
+    overflow: hidden;
+    width: 100%;
+    margin: 0;
+}
+
+.roundedTable th,
+.roundedTable td {
+    padding: .6em;
+    background: #ddd;
+    border-bottom: 1px solid white;
+}
+
+.roundedTable th {
+    text-align: left;
+}
+
+.roundedTable tr:last-child td {
+    border-bottom: none;
+}

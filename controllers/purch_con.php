@@ -60,9 +60,9 @@ class PurchCon
         }
 
         // Create a purchase || Make a purchase oskdfj9awhefkasjfoashdkfhasidfapefsjikosef jio; jko;asdf 
-        if ($this->productModel->CreatePurchase()) {
+        if ($this->purchaseModel->CreatePurchase()) {
             $nQty = $crtProd['prod_qty'] - $this->purchaseModel->order_quantity;
-            $this->productModel->UpdateQuantity($this->productModel->id, $nQty);
+            $this->productModel->UpdateProductQty($this->productModel->id, $nQty);
             return "Purchase is successful";
         } else {
             return "Purchase failed";

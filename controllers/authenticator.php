@@ -41,17 +41,17 @@
 
                         // Redirect based on role
                         if ($user['role'] === 'admin') {
-                            $this->utils->Redirect('admin.php'); // Redirect to admin dashboard
+                            $this->utils->Redirect('admin_page.php'); // Redirect to admin dashboard
                         } else {
-                            $this->utils->Redirect('index_nn.php'); // Redirect to user dashboard
+                            $this->utils->Redirect('products_page.php'); // Redirect to user dashboard
                         }
                     } else {
                         error_log("Password does not match for user: $username"); // Add log
-                        return "Login failed. Please try again."; // Return error message
+                        return "Wrong password, please try again"; // Return error message
                     }
                 } else {
                     error_log("User not found: $username"); // Add log
-                    return "Login failed. Please try again."; // Return error message
+                    return "Wrong username, please try again"; // Return error message
                 }
             }
             

@@ -1,5 +1,5 @@
 <?php
     // redirect to index_nn.php page
-    $path = 'views/public/index_nn.php';
+    $path = 'views/public/logreg.php';
     header('Location:' . $path);
 ?>

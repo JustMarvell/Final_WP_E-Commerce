@@ -41,5 +41,19 @@
             $sql->bindParam(':password', password_hash($password, PASSWORD_BCRYPT)); // hash password
             return $sql->execute(); // return execution result
         }
+
+        public function GetUserById($id) {
+            $q = 'SELECT * FROM ' . $this->table . ' WHERE id = :id';
+            $sql = $this->db_conn->prepare($q);
+            $sql->bindParam(':id', $id);
+            $sql->execute();
+            return $sql->fetch(PDO::FETCH_ASSOC);
+        }
+
+        // public function GetUsernameById($id) {
+        //     $q = 'SELECT username FROM ' . $this->table . ' WHERE id=:id';
+        //     $sql = $this->db_conn->prepare($q);
+        //     $sql->bindParam(':id', $id);
+        // }
     }
 ?>

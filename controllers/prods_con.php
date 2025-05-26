@@ -1,20 +1,26 @@
 <?php
 include_once __DIR__ . '/../models/database_connector.php'; // Include database connection file
 include_once __DIR__ . '/../models/products.php'; // Include Product model
+include_once __DIR__ . '/../models/entry.php';
+include_once 'utils.php';
 
 class ProductController
 {
     private $db_conn;
     private $productModel;
+    private $entryModel;
+    private $utils;
 
     public function __construct($db)
     {
         $this->db_conn = $db; // Initialize database connection
         $this->productModel = new Products($db); // Initialize Product model
+        $this->entryModel = new Entry($db);
+        $this->utils = new Utils();
     }
 
     // Function to get all products
-    public function GetProducts()
+    public function GetProducts() : array
     {
         return $this->productModel->GetAllProducts(); // Call method from Product model to get all products
     }
@@ -29,6 +35,8 @@ class ProductController
     // Function to add product
     public function AddNewProduct($post, $file)
     {
+        $uID = $this->utils->SetUniqueProductId($post['prod_category']);
+        $this->productModel->id = $uID;
         $this->productModel->name = $post['prod_name']; // Set product name
         $this->productModel->quantity = $post['prod_qty']; // Set product quantity
         $this->productModel->description = $post['prod_desc']; // Set product description
@@ -38,6 +46,16 @@ class ProductController
         // Handle image upload
         $target_file = $this->productModel->UploadImage($file['prod_img']); // Upload image and get target file path
         $this->productModel->image = $target_file; // Set product image path
+
+        // Handle product entry history
+        $this->entryModel->id = $uID;
+        $this->entryModel->product_name = $post['prod_name'];
+        $this->entryModel->product_category = $post['prod_category'];
+        $this->entryModel->product_quantity = $post['prod_qty'];
+        $this->entryModel->product_price = $post['prod_price'];
+        $this->entryModel->entry_date = date('Y-m-d H:i:s');
+
+        $this->entryModel->AddProductEntry();
 
         return $this->productModel->AddProduct(); // Call method from Product model to add product
     }

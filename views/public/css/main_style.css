@@ -1,0 +1,152 @@
+/* Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
+
+/* Colors */
+.cl-blue {
+    color: #20b5ff;
+}
+
+.cl-orange {
+    color: #fa8315;
+}
+
+/* Navbar */
+nav {
+	z-index: 99;
+	width: 100%;
+	
+	font-family: 'Poppins', sans-serif;
+
+	display: table;
+	background: #ffffff;
+	color: #ffffff;
+  	box-shadow: 0 0.1em 1.5em hsla(27, 100%, 58%, 0.37);
+
+	justify-content: space-between;
+	position: sticky;
+	padding: 0px 30px;
+	margin: auto;
+	height: 80px;
+	line-height: 35px;
+	align-items: center;
+
+	&.navbar.navbar-shrink {
+		transition: all 2s ease;
+		animation: shrink 200ms ease;
+		height: 50px;
+
+		.navbar-brand {
+			font-size: 35px;
+			margin-left: 100px;
+		}
+
+		.gone {
+			font-size: smaller;
+			display: none;
+		}
+
+		.btn-log {
+			font-size: 20px;
+			width: 130px;
+			height: 30px;
+			text-wrap: initial;
+			padding: 0;
+		}
+	}
+
+	.navbar-brand {
+		font-size: 50px;
+		font-weight: 800;
+
+		display: inline-flex;
+		align-items: center;
+		align-content: center;
+	}
+
+	.nav-link {
+		color: #1d1d1d;
+		font-size: 18px;
+		font-weight: 500;
+		padding: 9px 15px;
+		transition: all 0.3s ease color;
+
+		&:hover {
+			color: #ffa012;
+			animation: spring 300ms ease-out;
+		}
+	}
+
+	.btn-log {
+		border-style: none;
+		font-size: 25px;
+		font-weight: 600;
+		justify-content: center;
+		color: white;
+		width: 145px;
+		height: 45px;
+		background: -webkit-linear-gradient(to right, #ff8828, #e6a6c1, #20b5ff);
+		background: linear-gradient(to right, #ff8828, #e6a6c1, #20b5ff);
+		border-radius: 10px;
+
+		&:hover{
+			animation: spring 300ms ease-out;
+			text-shadow: 0 -1px 0 #ef816c;
+			font-weight: 600;
+		}
+
+		&:active {
+			transform: translateY(4px);
+		}
+	}
+
+	.navbar-collapse.collapse.in {
+		display: block !important;
+	}
+
+	.dropdown-menu {
+		margin-top: 0;
+		border: none;
+		background-color: #F3E5F5;
+		padding: 50px 50px 30px 50px;
+	}
+
+	.dropdown-item {
+		padding: 0px;
+	}
+
+	.dropdown-item:hover {
+		background-color: inherit;
+	}
+}
+
+#dropdown-menu3 {
+    position: relative;
+}
+
+@keyframes spring {
+  15% {
+    -webkit-transform-origin: center center;
+    -webkit-transform: scale(1.2, 1.1);
+  }
+  40% {
+    -webkit-transform-origin: center center;
+    -webkit-transform: scale(0.95, 0.95);
+  }
+  75% {
+    -webkit-transform-origin: center center;
+    -webkit-transform: scale(1.05, 1);
+  }
+  100% {
+    -webkit-transform-origin: center center;
+    -webkit-transform: scale(1, 1);
+  }
+}
+
+@keyframes shrink {
+	0% {
+		height: 80px;
+	}
+    100% { 
+		height: 50px;
+	}
+}
