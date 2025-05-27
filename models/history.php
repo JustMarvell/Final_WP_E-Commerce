@@ -35,7 +35,7 @@ class History {
     }
 
     public function GetHistoryByUser($user_id): array {
-        $q = 'SELECT * FROM ' . $this->table . ' WHERE user_id = :user_id';
+        $q = 'SELECT * FROM ' . $this->table . ' WHERE user_id = :user_id ORDER BY ' . $this->table . '.order_date DESC';
         $sql = $this->db_conn->prepare($q);
         $sql->bindParam(':user_id', $user_id);
         $sql->execute();

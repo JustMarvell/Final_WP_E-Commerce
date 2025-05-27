@@ -31,7 +31,12 @@ class UserCnt
     // Function to add a new user
     public function AddUser($username, $password)
     {
-        return $this->userModel->AddUser($username, $password); // Call method from User model to add a new user
+        $uID = $this->utils->SetUniqueIntID($this->db_conn, 'users_login_inf');
+        $this->userModel->id = $uID;
+        $this->userModel->username = $username;
+        $this->userModel->password = $password;
+
+        return $this->userModel->AddUser(); // Call method from User model to add a new user
     }
 
     public function GetUserById($id) {

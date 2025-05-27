@@ -39,14 +39,14 @@
             // $keyword = $_POST['keyword'] ?? '';
 
             // $products =  $productController->SearchProduct($keyword);
-            break;
+        break;
         // handle get request
         case 'GET':
             if (isset($_GET['keyword'])) {
                 $keyword = strval($_GET['keyword']);
                 $products = $productController->SearchProduct($keyword);
             }
-            break;
+        break;
     }
 
     // if ($_SERVER['REQUEST_METHOD'] === 'POST') {

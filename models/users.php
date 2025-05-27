@@ -33,12 +33,14 @@
         }
 
         // add user
-        public function AddUser($username, $password): bool {
-            $q = "insert into " . $this->table . " (id, username, password) values (:id, :username, :password)";
+        public function AddUser() {
+            $q = 'INSERT INTO ' . $this->table . ' (id, username, password) VALUES (:id, :username, :password)';
             $sql = $this->db_conn->prepare($q);
-            $sql->bindParam(':id', $this->utils->SetUniqueIntID($this->db_conn, $this->table)); // bind unique ID
-            $sql->bindParam(':username', $username);
-            $sql->bindParam(':password', password_hash($password, PASSWORD_BCRYPT)); // hash password
+            // $sql->bindParam(':id', $this->utils->SetUniqueIntID($this->db_conn, $this->table)); // bind unique ID
+            $sql->bindParam(':id', $this->id); // bind unique ID
+            $sql->bindParam(':username', $this->username);
+            $pc = password_hash($this->password, PASSWORD_BCRYPT);
+            $sql->bindParam(':password', $pc); // hash password
             return $sql->execute(); // return execution result
         }
 

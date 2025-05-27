@@ -35,6 +35,10 @@
             }
         break;
         case 'GET':
+            if (isset($_GET['keyword'])) {
+                $keyword = strval($_GET['keyword']);
+                $products = $productController->SearchProduct($keyword);
+            }
         break;
     }
 ?>
@@ -110,14 +114,15 @@
 
     <!-- Search box -->
     <div class="container mt-4">
-        <form action="" method="POST" class="row domain-search bg-pblue">
+        <form class="row domain-search bg-pblue">
             <div class="col-md-3">
                 <h2 class="form-title">Find Item <strong>In Stock</strong></h2>
             </div>
             <div class="col-md-9">
                 <div class="input-group search-box">
-                    <form action="" method="post">
-                        <input type="text" name="keyword" id="keyword" placeholder="Enter product name or category..." class="form-control" style="font-style: italic;">
+                    <form action="" method="POST">
+                        <input name="keyword" id="keyword" type="text" placeholder="Enter product name or category..." style="font-style: italic;" class="form-control">
+                        <!-- <span class="input-group-addon"><input type="submit" value="Search" class="btn btn-primary"></span> -->
                         <button class="input-group-addon btn btn-primary" type="submit" name="search">Search</button>
                     </form>
                 </div>
