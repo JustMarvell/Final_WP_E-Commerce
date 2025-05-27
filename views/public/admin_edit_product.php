@@ -92,7 +92,7 @@
                     value="<?php echo isset($product) ? $product['prod_category'] : ''; ?>">
                 </div>
                 <div class="form-group">
-                    <textarea name="prod_desc" required class="form-control item" placeholder="Product description..."><?php echo isset($product) ? $product['prod_desc'] : ''; ?></textarea>
+                    <textarea  name="prod_desc" required class="form-control item" placeholder="Product description..."><?= $product['prod_desc'] ?? ''; ?></textarea>
                 </div>
                 <div class="form-group">
                     <input type="file" class="form-control item" placeholder="<?= $product['prod_img'] ?? ''; ?>" name="prod_img">

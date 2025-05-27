@@ -66,7 +66,7 @@ class ProductController
         $this->productModel->id = $post['prod_id']; // Set product ID
         $this->productModel->name = $post['prod_name']; // Set product name
         $this->productModel->quantity = $post['prod_qty']; // Set product quantity
-        $this->productModel->description = $post['prod_description']; // Set product description
+        $this->productModel->description = $post['prod_desc']; // ganti dari $post['prod_description'] jadi $post['prod_desc']
         $this->productModel->price = $post['prod_price']; // Set product price
         $this->productModel->category = $post['prod_category']; // Set product category
 

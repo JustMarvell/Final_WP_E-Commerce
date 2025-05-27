@@ -27,12 +27,17 @@
 
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         if (isset($_POST['buy'])) {
-            // Add purchase history
-            $productController->UpdateQuantity($_POST['prod_id'], intval($product['prod_qty']) - intval($_POST['ord_qty']));
-            $historyController->AddOrderHistory($_POST);
-
-            // Redirect to receipt page
-            Header('Location: product_receipt.php?prod_id=' . $_POST['prod_id'] . '&ord_qty=' . $_POST['ord_qty']);
+            if (isset($_SESSION['is_logged_in'])) {
+                // Update product quantity
+                $productController->UpdateQuantity($_POST['prod_id'], intval($product['prod_qty']) - intval($_POST['ord_qty']));
+                // Add purchase history
+                $historyController->AddOrderHistory($_POST);
+    
+                // Redirect to receipt page
+                Header('Location: product_receipt.php?prod_id=' . $_POST['prod_id'] . '&ord_qty=' . $_POST['ord_qty']);
+            } else {
+                Utils::Redirect('logreg.php');
+            }
         }
 
         if (isset($_POST['logout'])) {
@@ -162,12 +167,18 @@
                     
                 <!-- Actions -->
                     <div class="d-grid gap-2">
-                        <input type="hidden" name="user_id" value="<?php echo $_SESSION['user_id'] ?>">
+                        <input type="hidden" name="user_id" value="<?php if (isset($_SESSION['user_id'])) echo $_SESSION['user_id'] ?>">
                         <input type="hidden" name="prod_id" value="<?php echo htmlspecialchars($product['id']); ?>">
                         <input type="hidden" name="ord_date" value="<?php echo Utils::GetCurrentTimestamp(); ?>">
                         <input type="hidden" name="prod_name" value="<?php echo htmlspecialchars($product['prod_name']); ?>">
                         <input type="hidden" name="prod_price" value="<?php echo htmlspecialchars($product['prod_price']); ?>">
-                        <button type="submit" class="btn btn-primary" onclick="" name="buy">Buy Product</button>
+                        <button type="submit" class="btn btn-primary" onclick="" name="buy">
+                            <?php if (isset($_SESSION['is_logged_in'])) : ?>
+                                Buy Product
+                            <?php else : ?>
+                                Please Log in first
+                            <?php endif; ?>
+                        </button>
                     </div>
                 </form>
 
