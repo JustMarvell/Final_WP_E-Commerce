@@ -18,11 +18,23 @@
 
     $historys = $historyController->GetHistoryByUser($_SESSION['user_id']);
 
+    // check if logged in or nah
+    if (isset($_SESSION['is_logged_in']) && $_SESSION['is_logged_in'] == true) {
+        $logged_in = true;
+        $log_button = '<button class="btn btn-log" type="submit" name="logout">Logout</button>';
+    } else {
+        $logged_in = false;
+        $log_button = '<button class="btn btn-log" type="submit" name="login">Login</button>';
+    }
+
     switch ($_SERVER['REQUEST_METHOD']) {
         // handle post request
         case 'POST':
             if (isset($_POST['logout'])) {
                 $utils->Redirect('logout.php');
+            }
+            if (isset($_POST['login'])) {
+                $utils->Redirect('logreg.php');
             }
         break;
         // handle get request
@@ -65,49 +77,16 @@
 </head>
 <body>
     <!-- Navbar -->
-    <header id="head" class="pt-5 pb-4 mb-5">
-        <nav id="navbar" class="navbar navbar-expand-lg fixed-top navbar">
-            <div class="container">
-                <a class="navbar-brand" href="#head">
-                    <span class="cl-blue">V<span class="gone">ello</span></span><span class="cl-orange">S<span class="gone">tore</span>
-                </a>
-    
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse d-flex justify-content-center" id="navbarNav">
-                    <ul class="navbar-nav">
-                        <li class="nav-item px-1 active">
-                            <a class="nav-link" href="products_page.php#head">Home</a>
-                        </li>
-                        <li class="nav-item px-1">
-                            <a class="nav-link" href="products_page.php#products">Products</a>
-                        </li>
-                        <li class="nav-item px-1">
-                            <a class="nav-link" href="#">History</a>
-                        </li>
-                        <!-- <li class="nav-item px-1">
-                            <a class="nav-link" href="#">About</a>
-                        </li>
-                        <li class="nav-item px-1">
-                            <a class="nav-link" href="#">Contact Me</a>
-                        </li> -->
-                    </ul>
-                </div>
-    
-                <form class="form-inline" method="post">
-                    <button class="btn btn-log" type="submit" name="logout">Logout</button>
-                </form>
-            </div>
-        </nav>
-    </header>
+    <?php include_once 'navbar_user.php'; ?>
 
     <div class="container">
         <h1 class="text-center mb-5"><span class="cl-orange">Order</span> <span class="cl-blue">History</span></h1>
         
         <?php
-            if (empty($historys))   {
+            if (empty($historys) && $logged_in == true)   {
                 echo '<div class="alert alert-warning" role="alert">You have no purchase history</div>';
+            } else if (empty($historys) && $logged_in == false) {
+                echo '<div class="alert alert-warning" role="alert">You have no purchase history please log in first</div>';
             }
         ?>
 

@@ -189,6 +189,9 @@
                         <div class="d-flex align-items-center mb-3">
                             <?php echo htmlspecialchars($product['prod_category']); ?>
                         </div>
+                        <div class="d-flex align-items-center mb-3">
+                            In Stock : <?php echo htmlspecialchars($product['prod_qty']); ?>
+                        </div>
                         <div class="d-flex justify-content-between align-items-center">
                             <form action="admin_edit_product.php" method="get">
                                 <input type="hidden" name="prod_id" value="<?php echo $product['id']; ?>">

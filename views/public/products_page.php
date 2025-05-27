@@ -16,6 +16,13 @@
 
     $products = $productController->GetProducts();
 
+    // check if logged in or nah
+    if (isset($_SESSION['is_logged_in']) && isset($_SESSION['is_logged_in']) == true) {
+        $log_button = '<button class="btn btn-log" type="submit" name="logout">Logout</button>';
+    } else {
+        $log_button = '<button class="btn btn-log" type="submit" name="login">Login</button>';
+    }
+
     switch ($_SERVER['REQUEST_METHOD']) {
         // handle post request
         case 'POST':
@@ -24,6 +31,9 @@
             }
             if (isset($_POST['purch_prod'])) {
                 header("Location:product_buy.php?prod_id=" . $_POST['prod_id']);
+            }
+            if (isset($_POST['login'])) {
+                $utils->Redirect('logreg.php');
             }
 
             // $keyword = $_POST['keyword'] ?? '';
@@ -70,42 +80,7 @@
 </head>
 <body>
     <!-- Navbar -->
-    <header id="head" class="pt-5 pb-4">
-        <nav id="navbar" class="navbar navbar-expand-lg fixed-top navbar">
-            <div class="container">
-                <a class="navbar-brand" href="#head">
-                    <span class="cl-blue">V<span class="gone">ello</span></span><span class="cl-orange">S<span class="gone">tore</span>
-                </a>
-    
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse d-flex justify-content-center" id="navbarNav">
-                    <ul class="navbar-nav">
-                        <li class="nav-item px-1 active">
-                            <a class="nav-link" href="#head">Home</a>
-                        </li>
-                        <li class="nav-item px-1">
-                            <a class="nav-link" href="#products">Products</a>
-                        </li>
-                        <li class="nav-item px-1">
-                            <a class="nav-link" href="product_history.php">History</a>
-                        </li>
-                        <!-- <li class="nav-item px-1">
-                            <a class="nav-link" href="#">About</a>
-                        </li>
-                        <li class="nav-item px-1">
-                            <a class="nav-link" href="#">Contact Me</a>
-                        </li> -->
-                    </ul>
-                </div>
-    
-                <form class="form-inline" method="post">
-                    <button class="btn btn-log" type="submit" name="logout">Logout</button>
-                </form>
-            </div>
-        </nav>
-    </header>
+    <?php include_once 'navbar_user.php'; ?>
 
     <!-- Carousel -->
     <div class="container mt-4">
@@ -197,9 +172,9 @@
                         <div class="d-flex align-items-center mb-3 truncate-2">
                             <?php echo htmlspecialchars($product['prod_category']); ?>
                         </div>
-                        <p class="text-muted mb-4 truncate-4">
+                        <!-- <p class="text-muted mb-4 truncate-4">
                             <?php echo htmlspecialchars($product['prod_desc']); ?>
-                        </p>
+                        </p> -->
                         <!-- <div class="d-flex justify-content-between align-items-center">
                             <span class="price">
                                 <?php echo htmlspecialchars($utils->ConvertToRupiah($product['prod_price'])); ?>
