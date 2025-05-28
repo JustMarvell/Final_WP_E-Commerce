@@ -79,7 +79,7 @@
     <!-- Navbar -->
     <?php include_once 'navbar_user.php'; ?>
 
-    <div class="container">
+    <div class="container mt-4">
         <h1 class="text-center mb-5"><span class="cl-orange">Order</span> <span class="cl-blue">History</span></h1>
         
         <?php

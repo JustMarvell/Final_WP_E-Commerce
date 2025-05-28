@@ -174,7 +174,11 @@
                         <input type="hidden" name="prod_price" value="<?php echo htmlspecialchars($product['prod_price']); ?>">
                         <button type="submit" class="btn btn-primary" onclick="" name="buy">
                             <?php if (isset($_SESSION['is_logged_in'])) : ?>
-                                Buy Product
+                                <?php if ($product['prod_qty'] == 0) : ?>
+                                    Out of Stock
+                                <?php else : ?>
+                                    Buy Product
+                                <?php endif; ?>
                             <?php else : ?>
                                 Please Log in first
                             <?php endif; ?>

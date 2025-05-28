@@ -160,8 +160,7 @@
         ?>
 
         <div class="row justify-content-between">
-            <?php foreach($products as $product): 
-                if ((int)$product['prod_qty'] > 0): ?>
+            <?php foreach($products as $product): ?>
             <div class="col-md-4 mb-5">
                 <div class="product-card bg-white rounded-4 shadow-sm h-100 position-relative">
                     <div class="product-image-container">
@@ -202,8 +201,7 @@
                     </div>
                 </div>
             </div>
-            <?php endif;
-            endforeach; ?>
+            <?php endforeach; ?>
         </div>
     </div>
 

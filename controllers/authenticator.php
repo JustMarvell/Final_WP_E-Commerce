@@ -69,7 +69,7 @@
                 // check if the username is exist
                 if ($this->CheckUsername($username) == true) {
                     error_log("User already exist: $username"); // Add log
-                    return "Wrong username, please try again"; // Return error message
+                    return "Username already exist, Please use a different username"; // Return error message
                 } else {
                     // add new user
                     $add = $this->user_controller->AddUser($username, $password);

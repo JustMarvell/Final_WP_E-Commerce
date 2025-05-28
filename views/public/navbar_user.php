@@ -20,7 +20,7 @@
                             <a class="nav-link" href="product_history.php">History</a>
                         </li>
                         <li class="nav-item px-1">
-                            <a class="nav-link"><?php if (isset($_SESSION['username'])) echo $_SESSION['username']; ?></a>
+                            <a class="nav-link"><?php if (isset($_SESSION['username'])) echo 'Logged in as : ' . $_SESSION['username']; ?></a>
                         </li>
                         <!-- <li class="nav-item px-1">
                             <a class="nav-link" href="#">About</a>

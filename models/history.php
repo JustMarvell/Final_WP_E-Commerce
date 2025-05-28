@@ -20,7 +20,7 @@ class History {
     }
 
     public function GetAllHistory(): array {
-        $q = "SELECT * FROM " . $this->table . " ORDER BY " . $this->table . ".user_id ASC";
+        $q = "SELECT * FROM " . $this->table . " ORDER BY " . $this->table . ".order_date DESC";
         $sql = $this->db_conn->prepare($q);
         $sql->execute();
         return $sql->fetchAll(PDO::FETCH_ASSOC);
